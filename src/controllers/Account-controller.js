@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
-const mongoose = require('mongoose');
 const Account = require('../mongo/models/Account');
+const verify = require('../middleware/Verify');
 
 const createAccount = async (req, res) => {
     const {
@@ -37,8 +37,8 @@ const createAccount = async (req, res) => {
 };
 
 const makeSome = async (req, res) =>{
-    console.log("Midkjdbfndskjgb sfdjlnvñklsdmgldfionhljgfcihsdg iduhgdfukhv");
-    res.status(500).send({message:"Hola"});
+    verify.requestVerification(2288455625);
+
 }
 
 const comparePhotos = async (req, res) => {
@@ -49,7 +49,7 @@ module.exports = {
     createAccount,
     makeSome,
     comparePhotos,
-    
+
 };
 
 

@@ -1,38 +1,50 @@
-const Vonage = require('@vonage/server-sdk');
-const vonage = new Vonage({
-  apiKey: "3c83746d",
-  apiSecret: "WXt2Od7YB7zau38q"
-});
-
-const verificationRequest = (number) => {
-    
-    vonage.verify.request({
-        brand: 'PYMEET',
-        to: number,
-    }), (err, data) => {
-        if (err) {
-            return err;
-        } else {
-            const verifyRequestId = data.request_id;
-            return verifyRequestId;
-        }
+var optionsRequestVerification = {
+    method: 'POST',
+    url: 'https://api.tcscubo.com/banking/vonage/verify/v1/%7Bformat%7D',
+    headers: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'ocp-apim-subscription-key': process.env.APISECRETVERIFY
     }
-
 };
 
-const verify = (request_id, code) => {
-
-    vonage.verify.check({
-        request_id: request_id,
-        code: code
-    }, (err, data) => {
-        if (err) {
-            return err;
-        } else {
-            const verified = data.status;
-            return verified;
-        }
+var optionsVerifyCheck = {
+    method: 'POST',
+    url: 'https://api.tcscubo.com/banking/vonage/verify/v1/check/%7Bformat%7D',
+    headers: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'ocp-apim-subscription-key': process.env.APISECRETVERIFY
     }
+};
 
+
+const requestVerification = (phoneNumber, format) => {
+
+    request(optionsRequestVerification, function (error, response, body) {
+        if (error) throw new Error(error);
+
+        return body;
+      }
     );
-};
+
+}
+
+
+
+
+const verifyCheck = (phoneNumber, format) => {
+
+    request(optionsVerifyCheck, function (error, response, body) {
+        if (error) throw new Error(error);
+
+        return body;
+    }
+    );
+}
+
+
+module.exports = {
+    requestVerification,
+    verifyCheck
+}
+
+

@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/davisbd100/hackaton-backend#readme",
   "dependencies": {
+    "@vonage/server-sdk": "^2.10.10",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",

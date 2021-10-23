@@ -41,9 +41,15 @@ const makeSome = async (req, res) =>{
     res.status(500).send({message:"Hola"});
 }
 
+const comparePhotos = async (req, res) => {
+
+}
+
 module.exports = {
     createAccount,
     makeSome,
+    comparePhotos,
+    
 };
 
 

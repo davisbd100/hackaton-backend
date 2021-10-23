@@ -1,7 +1,8 @@
 const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
+const Account = require('../mongo/models/Account');
 
-const createAccount = (req, res) => {
+const createAccount = async (req, res) => {
     const {
         email, password,
     } = req.body;
@@ -35,10 +36,9 @@ const createAccount = (req, res) => {
 
 };
 
-const makeSome = (req, res) =>{
+const makeSome = async (req, res) =>{
     console.log("Midkjdbfndskjgb sfdjlnvñklsdmgldfionhljgfcihsdg iduhgdfukhv");
-    res.status(200);
-
+    res.status(500).send({message:"Hola"});
 }
 
 module.exports = {
